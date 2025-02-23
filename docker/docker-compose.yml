@@ -1,0 +1,11 @@
+services:
+  mysql:
+    container_name: 'mysql-gereme'
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=geremedb'
+      - 'MYSQL_PASSWORD=12345678'
+      - 'MYSQL_ROOT_PASSWORD=12345678'
+      - 'MYSQL_USER=admin'
+    ports:
+      - '3307:3306'
