@@ -1,0 +1,10 @@
+package com.br.project.gereme.exception;
+
+
+public class InvalidIdException extends RuntimeException {
+
+    public InvalidIdException(String message) {
+        super(message);
+    }
+}
+
