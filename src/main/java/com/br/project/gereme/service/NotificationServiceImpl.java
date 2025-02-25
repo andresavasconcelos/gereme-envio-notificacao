@@ -105,7 +105,7 @@ public class NotificationServiceImpl implements INotificationService {
 
     }
 
-    private Consumer<Notification> sendNotification() {
+    public Consumer<Notification> sendNotification() {
         return notification -> {
             try{
 

@@ -13,7 +13,7 @@ public record ScheduleNotificationsDTO(LocalDateTime dateTime,
                                        String message,
                                        @JsonDeserialize(using = ChannelEnumDeserializer.class) ChannelEnum channel) {
 
-    public Notification toNotification(){
+    public Notification toNotification() {
         return new Notification(
                 dateTime,
                 destination,

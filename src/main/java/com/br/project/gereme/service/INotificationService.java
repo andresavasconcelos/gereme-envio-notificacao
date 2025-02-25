@@ -5,6 +5,7 @@ import com.br.project.gereme.entity.Notification;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public interface INotificationService {
 
@@ -15,4 +16,6 @@ public interface INotificationService {
     void cancelNotification(Long id);
 
     void chekingAndSending(LocalDateTime localDateTime);
+
+    Consumer<Notification> sendNotification();
 }
