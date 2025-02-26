@@ -1,0 +1,43 @@
+name: CI workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'  # Specify the Java version you are using
+          distribution: 'temurin'  # You can choose 'temurin', 'corretto', 'zulu', etc.
+
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-m2-
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Run unit tests with Maven
+        run: mvn -B test
+
+      - name: Lint with Checkstyle (optional)
+        run: mvn -B checkstyle:check
+
+      - name: Generate coverage report (optional)
+        run: mvn -B jacoco:report
